@@ -1,0 +1,281 @@
+<html>
+    <head>
+        <style>
+            #ilocation
+            {
+                background-color:lemonchiffon ;
+            }
+
+            #stages
+            {
+                background-color:lightsalmon ;
+            }
+            #cri
+            {
+                background-color: yellow;
+            }
+            #fnt
+            {
+                font-weight: normal;
+                font-size: medium;
+            }
+
+            #main
+            {
+                background-color: yellowgreen;
+            }
+
+
+           body {
+                background-image: url('img.jpg');
+                background-repeat: no-repeat;
+                }
+        
+
+        #latitude{
+            position:absolute;
+            top:50px;
+            left:150px;
+            background-color: yellow;
+        }
+
+        #longitude{
+            position:absolute;
+            top:50px;
+            left:250px;
+            background-color: yellow;
+        }
+
+        #p_latitude{
+            position:absolute;
+            top:50px;
+            left:500px;
+            background-color: yellow;
+        }
+
+        #p_longitude{
+            position:absolute;
+            top:50px;
+            left:600px;
+            background-color: yellow;
+        }
+
+        #counter{
+            position:absolute;
+            top:50px;
+            left:800px;
+            background-color: yellow;
+        }
+
+        #distance{
+            position:absolute;
+            top:50px;
+            left:950px;
+            background-color: yellow;
+        }
+
+        #speed
+        {
+            position:absolute;
+            top:50px;
+            left:1150px;
+            background-color: yellow;
+
+        }
+
+        .topnav {
+            background-color: #333;
+            overflow: hidden;
+            }
+
+
+            .topnav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            }
+
+
+            .topnav a:hover {
+            background-color:yellow;
+            color: orange;
+            }
+
+            .topnav a.active {
+            background-color: red;
+            color: white;
+            }
+
+        </style>
+      
+        <script>
+            onFunction=function()
+            {
+                navigator.geolocation.getCurrentPosition((position)=>{
+                    var lat1=document.getElementById("lat").innerHTML=position.coords.latitude
+                    var lon1=document.getElementById("lng").innerHTML=position.coords.longitude
+                    var lat2=document.getElementById("p_lat").innerHTML=parseInt(document.getElementById("e_lat").value)
+                    var lon2=document.getElementById("p_lng").innerHTML=parseInt(document.getElementById("e_lng").value)
+                    
+                    var R = 6371; 
+                    var dLat = toRad(lat2-lat1);
+                    var dLon = toRad(lon2-lon1);
+                    var lat1 = toRad(lat1);
+                    var lat2 = toRad(lat2);
+
+                    var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                        Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
+                    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+                    d = R * c;
+
+                    function toRad(Value) 
+                    {
+                        return Value * Math.PI / 180;
+                    }
+
+                    document.getElementById("dist").innerHTML=d;
+
+                })
+            
+            }
+
+
+
+            start_time=function()
+            {
+                seconds = 0;
+                var el = document.getElementById('sec');
+
+                function incrementSeconds() {
+                seconds += 1;
+                el.innerText =  seconds
+
+                console.log(d)
+                document.getElementById("spe").innerHTML= (d)/(seconds)
+                
+                }
+
+                var cancel = setInterval(incrementSeconds, 1000);
+              
+            }
+
+
+            analyzeVelocity=function(type)
+            {
+                var n=0;
+                switch(type)
+                {
+                    case "pregnant women":n=0.25*60;break;
+                    case "car accident":n=30*60;break;
+                    case "brain taruma":n=43*60;break;
+                    case  "snake bite" :n=22.34*60;break;
+                    case "heart attack":n=36*60;break;
+                    case "blood loss" : n=42.3*60;break;
+                    case "severe fracture":n=300*60;break;
+                    case "breathing problem":15*60;break;
+                    case "aged person":360*60;break;
+                }
+                var crit=document.getElementById("critical").innerHTML=parseInt(n);
+                console.log(seconds)
+
+                setInterval(()=>{
+                    alert("you are going to loose the patient !!!!! ")
+                },n)
+                
+            }
+
+
+    
+        </script>
+    </head>
+    <body >
+        <form>
+            <fieldset id="main" style="height:170px " >
+                <legend><h3>PARAMETERS</h3></legend>
+
+            <fieldset style="width:max-content" id="cri">
+                <legend><font color="red">   Critical Time  </font></legend>
+                <div id="critical"><h4> 00 </h4></div>
+            </fieldset>
+
+            <fieldset id="latitude" style="width:min-content">
+                <legend><font color="red">Current Latitude:</font></legend>
+                <h4 id="lat"> 00 </h4>
+            </fieldset>
+
+            <fieldset id="longitude" style="width:min-content">
+                <legend><font color="red">Current Longitude:</font></legend>
+               <h4 id="lng"> 00 </h4>
+            </fieldset>
+
+            <fieldset id="p_latitude" style="width:min-content">
+                <legend><font color="red">Hospital Latitude:</font></legend>
+                <h4 id="p_lat"> 00 </h4>
+            </fieldset>
+
+            <fieldset id="p_longitude" style="width:min-content">
+                <legend><font color="red">Hospital Longitude:</font></legend>
+               <h4 id="p_lng"> 00 </h4>
+            </fieldset>
+
+            <fieldset id="counter" style="width:max-content">
+                <legend><font color="red">counter seconds</font></legend>
+               <div><h4 id="sec"> 00 </h4></div>
+            </fieldset>
+
+            <fieldset id="distance" style="width:min-content">
+                <legend><font color="red">DISTANCE:</font></legend>
+                <h4 id="dist"> 00 </h4><h4>KM</h4>
+            </fieldset>
+
+            <fieldset id="speed" style="width:min-content">
+                <legend><font color="red">SPEED:</font></legend>
+                <h4 id="spe"> 00 </h4><h4>km/s</h4>
+            </fieldset>
+
+
+            <input id="sec_but" type="button" onclick="start_time()" value="START TIME"/>
+
+
+            </fieldset>
+            
+            <fieldset id="ilocation">
+                <legend><h4>Location</h4></legend>
+            <h4>Hospital location</h4>
+            lat:<input type="text" name="startLocation" id="e_lat" placeholder="enter here">
+            long:<input type="text" name="startLocation" id="e_lng" placeholder="enter here">
+            </fieldset>
+
+
+            <fieldset id="stages">
+                <legend>Select Case</legend>
+            <h3>select the accident type please</h3>
+            <input type="radio" name="branch" id="select" value="pregnant women" onclick="analyzeVelocity(this.value)"/> <span id="fnt">pregnant case</span><br>
+            <input type="radio" name="branch" id="select" value="car accident" onclick="analyzeVelocity(this.value)"/><span id="fnt">car accident</span> <br>
+            <input type="radio" name="branch" id="select" value="brain taruma" onclick="analyzeVelocity(this.value)"/> <span id="fnt">brain taruma</span><br>
+            <input type="radio" name="branch" id="select" value="snake bite" onclick="analyzeVelocity(this.value)"/> <span id="fnt">snake bite</span><br>
+            <input type="radio" name="branch" id="select" value="heart attack" onclick="analyzeVelocity(this.value)"/> <span id="fnt">heart attack</span><br>
+            <input type="radio" name="branch" id="select" value="blood loss" onclick="analyzeVelocity(this.value)"/> <span id="fnt">blood loss</span><br>
+            <input type="radio" name="branch" id="select" value="severe fracture" onclick="analyzeVelocity(this.value)"/> <span id="fnt">severe fracture</span><br>
+            <input type="radio" name="branch" id="select" value="breathing problem" onclick="analyzeVelocity(this.value)"/> <span id="fnt">breathing problem</span><br>
+            <input type="radio" name="branch" id="select" value="aged person" onclick="analyzeVelocity(this.value)"/> <span id="fnt">aged person</span><br>
+            
+           <br> <input type="button" id="loc_but" onclick="onFunction()" value="LOCATION"/>
+        </fieldset>
+            
+        </form>
+
+        <div class="topnav">
+            <a class="active" href="http://localhost:3000/">Home</a>
+            <a href="http://localhost:3000/second/">Function</a>
+            <a href="http://localhost:3000/hospital/">Data</a>
+            <a href="http://localhost:3000/second/third">Map</a>
+          </div>
+
+    </body>
+
+
+</html>

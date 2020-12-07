@@ -1,0 +1,58 @@
+<html>
+      <head>
+            <style>
+                  .topnav {
+            background-color: #333;
+            overflow: hidden;
+            }
+
+
+            .topnav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            }
+
+
+            .topnav a:hover {
+            background-color:yellow;
+            color: orange;
+            }
+
+            .topnav a.active {
+            background-color: red;
+            color: white;
+            }
+
+            </style>
+      </head>
+
+<body style="background-color: darkblue;">
+
+      <div class="topnav">
+            <a class="active" href="http://localhost:3000/">Home</a>
+           <a href="http://localhost:3000/second/">Function</a>
+           <a href="http://localhost:3000/hospital/">Data</a>
+           <a href="http://localhost:3000/second/third">Map</a>
+         </div>
+
+
+
+<fieldset style="background-color: orchid;">
+<h1>Registered Hospitals Location For Reference  </h1>
+</fieldset>
+
+<fieldset style="background-color:yellowgreen;">
+<ul>
+    <% hospitals.forEach(function(hosp){ %>
+          <li><h3><font color="red"> <%=  hosp.name  %> ----)          <%= hosp.lat %> N  ,  <%= hosp.lng %> E</font></h3></li>
+    <% }); %>
+  </ul>
+</fieldset>
+
+</body>
+
+</html>

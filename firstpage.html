@@ -1,0 +1,114 @@
+<html>
+    <head>
+        <style>
+        
+            body {
+                background-image: url('img.jpg');
+                background-repeat: no-repeat;
+                }
+            #content {
+                        position:absolute;
+                        left:10px;
+                        top:100px;
+                
+                    }
+            .topnav {
+            background-color: #333;
+            overflow: hidden;
+            }
+
+
+            .topnav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            }
+
+
+            .topnav a:hover {
+            background-color:yellow;
+            color: orange;
+            }
+
+            .topnav a.active {
+            background-color: red;
+            color: white;
+            }
+
+        </style>
+    </head>
+
+
+<script crossdomain src="https://unpkg.com/react@16/umd/react.development.js"> </script> 
+<script crossdomain src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"> </script> 
+<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"> </script>
+
+<body>
+    <div class="topnav">
+        <a class="active" href="http://localhost:3000/">Home</a>
+        <a href="http://localhost:3000/second/">Function</a>
+        <a href="http://localhost:3000/hospital/">Data</a>
+        <a href="http://localhost:3000/second/third">Map</a>
+      </div>
+<div id="myid"></div>
+<script type="text/babel">
+
+    class App extends React.Component
+    {
+        render()
+        {
+            return(<div>
+                <Headd/>
+                <Welcome/></div>)
+        }
+    }
+
+    class Welcome extends React.Component
+    {
+        render()
+        {
+
+            return(<div style={{position:"absolute", left: 800 , top:125}}>
+                <form>
+                    <fieldset>
+                        <legend><h4><font color="red">About</font></h4></legend>
+                        <h3>*)This app is used to help the Ambulance Driver to reach the hospital in time </h3>
+                        <h3>*)This app provides the latitude and longitude of the Registered Hospital </h3>
+                        <h3>*)This app provides the google map and to the particular Hospital</h3>
+                    </fieldset>
+                    <fieldset>
+                        <legend><h4><font color="orange">Driver Details</font></h4></legend>
+                        <label><h3>Id number :</h3></label>
+                        <input type="text" placeholder="Id please"/> <br/>
+                        <label><h3>Driver Name :</h3></label>
+                        <input type="text" placeholder="Name"/> <br/>
+                        <label><h3>Ambulance Number :</h3></label>
+                        <input type="text" placeholder="Number"/> <br/><br/>
+                        <h3><font color="orange"> Let's Save The Patient</font></h3>
+                       <div style={{position:"relative", left:100}}> <input type="submit" value="START"/>  </div>
+
+                        
+                    </fieldset>
+                </form>
+                </div>
+            )
+        }
+    }
+
+    class Headd extends React.Component
+    {
+        render()
+        {
+            return(
+                <fieldset><font color="red"><h2>+  Road And Time Analysis For Ambulance Driver +</h2></font></fieldset>
+            )
+        }
+    }
+
+    ReactDOM.render(<App/>,document.getElementById("myid"))
+</script>
+</body>
+</html>
